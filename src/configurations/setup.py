@@ -10,7 +10,7 @@ from pyspark.sql.functions import col
 class SetupHelper():   
     def __init__(self, env: str, initialized: bool):
         Conf = Config()
-        self.landing_zone = Conf.base_dir_data + "/data/test_stream"
+        self.landing_zone = Conf.base_dir_data + "/landing"
         self.checkpoint_base = Conf.base_dir_checkpoint + "/data/test_stream"        
         self.catalog = env
         self.db_name = Conf.db_name
@@ -323,15 +323,3 @@ class SetupHelper():
         print(f"Deleting {self.checkpoint_base}...", end='')
         dbutils.fs.rm(self.checkpoint_base, True)
         print("Done")    
-
-# COMMAND ----------
-
-setup = SetupHelper("develop", True)
-
-# COMMAND ----------
-
-setup.setup()
-
-# COMMAND ----------
-
-setup.cleanup()
