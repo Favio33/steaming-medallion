@@ -8,6 +8,7 @@ import time
 
 # COMMAND ----------
 
+
 class Bronze():
     def __init__(self, env):        
         self.Conf = Config()
@@ -43,7 +44,8 @@ class Bronze():
         if once:
             return stream_writer.trigger(availableNow=True).toTable(f"{self.catalog}.{self.db_name}.registered_users_bz")
         else:
-            return stream_writer.trigger(processingTime=processing_time).toTable(f"{self.catalog}.{self.db_name}.registered_users_bz")
+            return (stream_writer.trigger(processingTime=processing_time)
+                    .toTable(f"{self.catalog}.{self.db_name}.registered_users_bz"))
 
     def consume_gym_logins(self, once=True, processing_time="5 seconds"):
 
@@ -100,7 +102,8 @@ class Bronze():
         if once:
             return stream_writer.trigger(availableNow=True).toTable(f"{self.catalog}.{self.db_name}.kafka_multiplex_bz")
         else:
-            return stream_writer.trigger(processingTime=processing_time).toTable(f"{self.catalog}.{self.db_name}.kafka_multiplex_bz")
+            return (stream_writer.trigger(processingTime=processing_time)
+                    .toTable(f"{self.catalog}.{self.db_name}.kafka_multiplex_bz"))
 
     def consume(self, once=True, processing_time="5 seconds"):
 

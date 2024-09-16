@@ -7,6 +7,7 @@ from pyspark.sql.functions import col
 
 # COMMAND ----------
 
+
 class SetupHelper():   
     def __init__(self, env: str, initialized: bool):
         Conf = Config()
@@ -311,7 +312,8 @@ class SetupHelper():
         print(f"Setup validation completed in {int(time.time()) - start} seconds")
 
     def cleanup(self):
-        dfTables = spark.sql("SHOW TABLES IN develop.dummy").where(~col("tableName").isin("h_payment_demo", "promotions", "promotions_v2", "user_item_data"))
+        dfTables = spark.sql("SHOW TABLES IN develop.dummy").where(~col("tableName").isin("h_payment_demo", "promotions",
+                                                                                          "promotions_v2", "user_item_data"))
         if not dfTables.isEmpty():
             print(f"Dropping tables from {self.catalog}.{self.db_name}...", end='')
             for row in dfTables.collect():
