@@ -15,10 +15,11 @@ class SetupHelper():
         self.catalog = env
         self.db_name = Conf.db_name
         self.initialized = initialized
-        
+
     def create_registered_users_bz(self):
-        if(self.initialized):
-            print(f"Creating registered_users_bz table...", end='')
+
+        if (self.initialized):
+            print("Creating registered_users_bz table...", end='')
             spark.sql(f"""CREATE TABLE IF NOT EXISTS {self.catalog}.{self.db_name}.registered_users_bz(
                     user_id long,
                     device_id long, 
@@ -31,11 +32,11 @@ class SetupHelper():
             print("Done")
         else:
             raise ReferenceError("Application database is not defined. Cannot create table in default database.")
-            
-    
+
     def create_gym_logins_bz(self):
-        if(self.initialized):
-            print(f"Creating gym_logins_bz table...", end='')
+
+        if (self.initialized):
+            print("Creating gym_logins_bz table...", end='')
             spark.sql(f"""CREATE OR REPLACE TABLE {self.catalog}.{self.db_name}.gym_logins_bz(
                     mac_address string,
                     gym bigint,
@@ -48,11 +49,11 @@ class SetupHelper():
             print("Done")
         else:
             raise ReferenceError("Application database is not defined. Cannot create table in default database.")
-            
-            
+
     def create_kafka_multiplex_bz(self):
-        if(self.initialized):
-            print(f"Creating kafka_multiplex_bz table...", end='')
+
+        if (self.initialized):
+            print("Creating kafka_multiplex_bz table...", end='')
             spark.sql(f"""CREATE TABLE IF NOT EXISTS {self.catalog}.{self.db_name}.kafka_multiplex_bz(
                   key string, 
                   value string, 
@@ -69,11 +70,11 @@ class SetupHelper():
             print("Done")
         else:
             raise ReferenceError("Application database is not defined. Cannot create table in default database.")       
-    
-            
+
     def create_users(self):
-        if(self.initialized):
-            print(f"Creating users table...", end='')
+
+        if (self.initialized):
+            print("Creating users table...", end='')
             spark.sql(f"""CREATE OR REPLACE TABLE {self.catalog}.{self.db_name}.users(
                     user_id bigint, 
                     device_id bigint, 
@@ -84,10 +85,11 @@ class SetupHelper():
             print("Done")
         else:
             raise ReferenceError("Application database is not defined. Cannot create table in default database.")            
-    
+
     def create_gym_logs(self):
-        if(self.initialized):
-            print(f"Creating gym_logs table...", end='')
+
+        if (self.initialized):
+            print("Creating gym_logs table...", end='')
             spark.sql(f"""CREATE OR REPLACE TABLE {self.catalog}.{self.db_name}.gym_logs(
                     mac_address string,
                     gym bigint,
@@ -98,10 +100,11 @@ class SetupHelper():
             print("Done")
         else:
             raise ReferenceError("Application database is not defined. Cannot create table in default database.")
-            
+
     def create_user_profile(self):
-        if(self.initialized):
-            print(f"Creating user_profile table...", end='')
+
+        if (self.initialized):
+            print("Creating user_profile table...", end='')
             spark.sql(f"""CREATE TABLE IF NOT EXISTS {self.catalog}.{self.db_name}.user_profile(
                     user_id bigint, 
                     dob DATE, 
@@ -120,8 +123,9 @@ class SetupHelper():
             raise ReferenceError("Application database is not defined. Cannot create table in default database.")
 
     def create_heart_rate(self):
-        if(self.initialized):
-            print(f"Creating heart_rate table...", end='')
+
+        if (self.initialized):
+            print("Creating heart_rate table...", end='')
             spark.sql(f"""CREATE TABLE IF NOT EXISTS {self.catalog}.{self.db_name}.heart_rate(
                     device_id LONG, 
                     time TIMESTAMP, 
@@ -132,10 +136,10 @@ class SetupHelper():
         else:
             raise ReferenceError("Application database is not defined. Cannot create table in default database.")
 
-            
     def create_user_bins(self):
-        if(self.initialized):
-            print(f"Creating user_bins table...", end='')
+
+        if (self.initialized):
+            print("Creating user_bins table...", end='')
             spark.sql(f"""CREATE TABLE IF NOT EXISTS {self.catalog}.{self.db_name}.user_bins(
                     user_id BIGINT, 
                     age STRING, 
@@ -146,11 +150,11 @@ class SetupHelper():
             print("Done")
         else:
             raise ReferenceError("Application database is not defined. Cannot create table in default database.")
-            
-            
+  
     def create_workouts(self):
-        if(self.initialized):
-            print(f"Creating workouts table...", end='')
+
+        if (self.initialized):
+            print("Creating workouts table...", end='')
             spark.sql(f"""CREATE TABLE IF NOT EXISTS {self.catalog}.{self.db_name}.workouts(
                     user_id INT, 
                     workout_id INT, 
@@ -161,11 +165,11 @@ class SetupHelper():
             print("Done")
         else:
             raise ReferenceError("Application database is not defined. Cannot create table in default database.")
-            
-            
+
     def create_completed_workouts(self):
-        if(self.initialized):
-            print(f"Creating completed_workouts table...", end='')
+
+        if (self.initialized):
+            print("Creating completed_workouts table...", end='')
             spark.sql(f"""CREATE TABLE IF NOT EXISTS {self.catalog}.{self.db_name}.completed_workouts(
                     user_id INT, 
                     workout_id INT, 
@@ -176,11 +180,11 @@ class SetupHelper():
             print("Done")
         else:
             raise ReferenceError("Application database is not defined. Cannot create table in default database.")
-            
-            
+
     def create_workout_bpm(self):
-        if(self.initialized):
-            print(f"Creating workout_bpm table...", end='')
+
+        if (self.initialized):
+            print("Creating workout_bpm table...", end='')
             spark.sql(f"""CREATE TABLE IF NOT EXISTS {self.catalog}.{self.db_name}.workout_bpm(
                     user_id INT, 
                     workout_id INT, 
@@ -193,11 +197,11 @@ class SetupHelper():
             print("Done")
         else:
             raise ReferenceError("Application database is not defined. Cannot create table in default database.")
-            
-            
+
     def create_date_lookup(self):
-        if(self.initialized):
-            print(f"Creating date_lookup table...", end='')
+
+        if (self.initialized):
+            print("Creating date_lookup table...", end='')
             spark.sql(f"""CREATE TABLE IF NOT EXISTS {self.catalog}.{self.db_name}.date_lookup(
                     date date, 
                     week int, 
@@ -211,10 +215,11 @@ class SetupHelper():
             print("Done")
         else:
             raise ReferenceError("Application database is not defined. Cannot create table in default database.")
-            
+
     def create_workout_bpm_summary(self):
-        if(self.initialized):
-            print(f"Creating workout_bpm_summary table...", end='')
+
+        if (self.initialized):
+            print("Creating workout_bpm_summary table...", end='')
             spark.sql(f"""CREATE TABLE IF NOT EXISTS {self.catalog}.{self.db_name}.workout_bpm_summary(
                     workout_id INT, 
                     session_id INT, 
@@ -231,10 +236,11 @@ class SetupHelper():
             print("Done")
         else:
             raise ReferenceError("Application database is not defined. Cannot create table in default database.")
-            
+
     def create_gym_summary(self):
-        if(self.initialized):
-            print(f"Creating gym_summar gold view...", end='')
+
+        if (self.initialized):
+            print("Creating gym_summar gold view...", end='')
             spark.sql(f"""CREATE OR REPLACE VIEW {self.catalog}.{self.db_name}.gym_summary AS
                             SELECT to_date(login::timestamp) date,
                             gym, l.mac_address, workout_id, session_id, 
@@ -253,11 +259,11 @@ class SetupHelper():
             print("Done")
         else:
             raise ReferenceError("Application database is not defined. Cannot create table in default database.")
-            
+
     def setup(self):
         import time
         start = int(time.time())
-        print(f"\nStarting setup ...")      
+        print("\nStarting setup ...")      
         self.create_registered_users_bz()
         self.create_gym_logins_bz() 
         self.create_kafka_multiplex_bz()        
@@ -273,17 +279,17 @@ class SetupHelper():
         self.create_workout_bpm_summary()  
         self.create_gym_summary()
         print(f"Setup completed in {int(time.time()) - start} seconds")
-        
+
     def assert_table(self, table_name):
         assert spark.sql(f"SHOW TABLES IN {self.catalog}.{self.db_name}") \
                    .filter(f"isTemporary == false and tableName == '{table_name}'") \
                    .count() == 1, f"The table {table_name} is missing"
         print(f"Found {table_name} table in {self.catalog}.{self.db_name}: Success")
-        
+
     def validate(self):
         import time
         start = int(time.time())
-        print(f"\nStarting setup validation ...")
+        print("\nStarting setup validation ...")
         assert spark.sql(f"SHOW DATABASES IN {self.catalog}") \
                     .filter(f"databaseName == '{self.db_name}'") \
                     .count() == 1, f"The database '{self.catalog}.{self.db_name}' is missing"
@@ -303,9 +309,9 @@ class SetupHelper():
         self.assert_table("workout_bpm_summary") 
         self.assert_table("gym_summary") 
         print(f"Setup validation completed in {int(time.time()) - start} seconds")
-        
+
     def cleanup(self):
-        dfTables = spark.sql(f"SHOW TABLES IN develop.dummy").where(~col("tableName").isin("h_payment_demo", "promotions", "promotions_v2", "user_item_data"))
+        dfTables = spark.sql("SHOW TABLES IN develop.dummy").where(~col("tableName").isin("h_payment_demo", "promotions", "promotions_v2", "user_item_data"))
         if not dfTables.isEmpty():
             print(f"Dropping tables from {self.catalog}.{self.db_name}...", end='')
             for row in dfTables.collect():
@@ -322,4 +328,4 @@ class SetupHelper():
         print("Done")
         print(f"Deleting {self.checkpoint_base}...", end='')
         dbutils.fs.rm(self.checkpoint_base, True)
-        print("Done")    
+        print("Done")
