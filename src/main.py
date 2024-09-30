@@ -41,8 +41,7 @@ h_loader = HistoryLoader("develop")
 
 # COMMAND ----------
 
-setup_required = (spark.sql(f"SHOW TABLES IN {env}.dummy")
-                  .where(~col("tableName").isin("h_payment_demo", "promotions", "promotions_v2", "user_item_data")).count())
+setup_required = spark.sql(f"SHOW TABLES IN {env}.dummy").where(~col("tableName").isin("h_payment_demo", "promotions", "promotions_v2", "user_item_data")).count()
 
 # COMMAND ----------
 
@@ -105,8 +104,3 @@ gold = Gold(env)
 # COMMAND ----------
 
 gold.upsert(once, processing_time)
-
-# COMMAND ----------
-
-# DBTITLE 1,Cleanup
-setup.cleanup()
